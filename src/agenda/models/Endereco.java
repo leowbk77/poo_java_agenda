@@ -54,4 +54,9 @@ public class Endereco {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public void exibirEndereco(){
+        System.out.println("RUA: " + this.rua + " CIDADE: " + this.cidade + " ESTADO: " + this.estado);
+        System.out.println(this.codigoPostal + this.pais);
+    }
 }

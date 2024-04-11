@@ -1,27 +1,39 @@
 package agenda.models;
 
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Agenda {
     private String nome;
     private String descricao;
-    private LinkedList<Evento> eventos;
+    private HashMap<Integer, Evento> eventos;
+    private int ultimoId;
 
     public Agenda(String nome, String descricao){
         this.nome = nome;
         this.descricao = descricao;
-        this.eventos = new LinkedList<Evento>();
+        this.eventos = new HashMap<Integer, Evento>();
+        this.ultimoId = 0;
     }
 
-    public void addEvento(Evento evento) {
-        eventos.add(evento);
+    public void addEvento(Evento novoEvento){
+        this.ultimoId += 1;
+        this.eventos.put(this.ultimoId, novoEvento);
+    }
+
+    public Evento getEventoById(int id){
+        return this.eventos.get(id);
+    }
+
+    public void removerEventoById(int id){
+        this.eventos.remove(id);
     }
 
     public String getNome(){
         return nome;
     }
 
-    public String descricao(){
+    public String getDescricao(){
         return descricao;
     }
 
@@ -31,5 +43,15 @@ public class Agenda {
 
     public void setDescricao(String descricao){
         this.descricao = descricao;
+    }
+
+    public void exibirEventos(){
+        Set<Integer> ids = eventos.keySet();
+        Evento evento;
+        for(int id : ids){
+            evento = eventos.get(id);
+            System.out.println("ID: " + id);
+            evento.exibirEvento();
+        } 
     }
 }

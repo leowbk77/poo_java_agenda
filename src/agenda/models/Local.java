@@ -1,7 +1,7 @@
 package agenda.models;
 
 public class Local {
-    private Strig nome;
+    private String nome;
     private String descricao;
     private int capacidade;
     private Endereco endereco;
@@ -43,6 +43,11 @@ public class Local {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public void exibirLocal(){
+        System.out.println(this.nome + "| Capacidade: " + capacidade);
+        this.endereco.exibirEndereco();
     }
 
 }
